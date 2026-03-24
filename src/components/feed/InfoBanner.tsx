@@ -12,8 +12,8 @@ export function InfoBanner() {
           </svg>
         </span>
         <p>
-          <span className="font-semibold text-neutral-800">How Local works:</span> Topics are posted by
-          verified elected officials and tied to real government decisions. Anyone with a valid zip code can
+          <span className="font-semibold text-neutral-800">How Agora works:</span> Topics are posted by
+          verified elected officials and tied to real government decisions. Anyone with a valid email address can
           weigh in anonymously on local government decisions.{" "}
           <span className="font-semibold text-neutral-800">Let&apos;s help our elected officials help us.</span>
         </p>

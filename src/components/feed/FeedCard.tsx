@@ -22,7 +22,7 @@ export function FeedCard({ item }: Props) {
               <span className="text-neutral-500">· {item.author.role}</span>
             ) : null}
             <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700">
-              ✓ Official
+              ✓ {item.author.role ? "Official" : "Board"}
             </span>
           </div>
 

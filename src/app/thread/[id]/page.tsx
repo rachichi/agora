@@ -49,7 +49,7 @@ export default async function ThreadPage({ params }: Props) {
               <span className="text-neutral-500">· {thread.author.role}</span>
             ) : null}
             <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700">
-              ✓ Official
+              ✓ {thread.author.role ? "Official" : "Board"}
             </span>
           </div>
           <p className="text-xs text-neutral-500">{thread.postedAt}</p>

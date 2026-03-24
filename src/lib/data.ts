@@ -2,44 +2,44 @@ import type { FeedItem, ThreadComment, ThreadDetail } from "./types";
 
 export const FEED_ITEMS: FeedItem[] = [
   {
-    id: "astoria-casino",
-    author: { initials: "ZM", name: "Zohran Mamdani", role: "NYC Mayor" },
-    headline: "Should the city approve the Astoria waterfront casino proposal?",
+    id: "bushwick-inlet-park",
+    author: { initials: "CB4", name: "Brooklyn Community Board 4", role: "" },
+    headline: "Should Bushwick Inlet Park Phase 4 prioritize active recreation or green space?",
     snippet:
-      "CB4 voted 14–9 against it last Tuesday, but the final call rests with City Council. Before I vote, I want to hear from Queens residents.",
-    tags: ["QUEENS", "ZONING"],
+      "The city released two design options for the remaining 4 acres. We want to hear from neighbors before our parks committee votes next month.",
+    tags: ["BROOKLYN", "PARKS"],
     postedAt: "Mar 22, 2026",
-    commentCount: 847,
+    commentCount: 0,
   },
   {
-    id: "mta-bus-cuts",
-    author: { initials: "LR", name: "Linda Rosenthal", role: "NY Assembly, D67" },
-    headline: "The MTA wants to cut 6 bus routes in upper Manhattan. Should Albany intervene?",
+    id: "east-harlem-rezoning",
+    author: { initials: "CB11", name: "Manhattan Community Board 11", role: "" },
+    headline: "East Harlem rezoning update: should the board push for deeper affordability in new developments?",
     snippet:
-      "These routes serve some of the lowest-income riders in the city. I'm exploring a legislative fix — tell me if you rely on the M11.",
-    tags: ["MANHATTAN", "TRANSIT"],
+      "Developers are proposing 350 units at 125th and Lex with 25% affordable. The board is considering whether to negotiate for 30% or more before the ULURP deadline.",
+    tags: ["MANHATTAN", "HOUSING"],
     postedAt: "Mar 21, 2026",
-    commentCount: 412,
+    commentCount: 0,
   },
   {
-    id: "gowanus-housing",
-    author: { initials: "CB6", name: "Brooklyn Community Board 6", role: "" },
-    headline: "We approved 240 units in Gowanus Phase 2 — with 30% affordable. Is that enough?",
+    id: "knickerbocker-bike-lane",
+    author: { initials: "JG", name: "Jennifer Gutiérrez", role: "City Council, D34" },
+    headline: "Knickerbocker Ave protected bike lane — should we fast-track installation?",
     snippet:
-      "Passed 18–6 at Tuesday's full board meeting. We're opening this thread so residents can weigh in before Phase 3 negotiations begin.",
-    tags: ["BROOKLYN", "HOUSING"],
+      "DOT proposed a protected lane from Flushing Ave to Myrtle Ave. I want to hear from residents and business owners before I push for accelerated construction.",
+    tags: ["BROOKLYN", "TRANSIT"],
+    postedAt: "Mar 20, 2026",
+    commentCount: 0,
+  },
+  {
+    id: "ues-school-overcrowding",
+    author: { initials: "AB", name: "Alex Bores", role: "Assembly, D73" },
+    headline: "UES school overcrowding: should Albany fund a new K–5 facility or expand existing buildings?",
+    snippet:
+      "Three elementary schools in the district are over 110% capacity. I'm drafting a capital funding request and need parent and community input on the best path forward.",
+    tags: ["MANHATTAN", "EDUCATION"],
     postedAt: "Mar 19, 2026",
-    commentCount: 189,
-  },
-  {
-    id: "eviction-protections",
-    author: { initials: "JS", name: "Julia Salazar", role: "NY Senate, D18" },
-    headline: "Good cause eviction protections are expiring in June. Should Albany renew and expand them?",
-    snippet:
-      "The current law covers roughly 400,000 NYC tenants. Landlord groups are pushing hard against renewal. Tenants — I need to hear from you.",
-    tags: ["BROOKLYN", "HOUSING", "TENANT RIGHTS"],
-    postedAt: "Mar 18, 2026",
-    commentCount: 598,
+    commentCount: 0,
   },
 ];
 
@@ -48,42 +48,39 @@ export function getThreadById(id: string): ThreadDetail | undefined {
   if (!item) return undefined;
 
   const bodies: Record<string, string[]> = {
-    "astoria-casino": [
-      "Community Board 4 voted 14–9 against the proposal last Tuesday, but the final call rests with City Council.",
-      "The project would fund two new ferry landings, expand waterfront public access, and require 30% permanently affordable housing in adjacent rezoned parcels.",
-      "I'm posting this so Queens residents can share their perspective before the Council hearing next month.",
+    "bushwick-inlet-park": [
+      "The city released two design concepts for the remaining 4 acres of Bushwick Inlet Park — one focused on sports fields and active recreation, the other on passive green space with native plantings.",
+      "Our parks committee will vote on a recommendation next month. Before we do, we want to hear from the community about what you actually need from this space.",
+      "Drop your thoughts below. All responses are anonymous.",
     ],
-    "mta-bus-cuts": [
-      "The MTA is proposing cuts to 6 bus routes in upper Manhattan, including the M11 and M4.",
-      "These routes serve some of the lowest-income riders in the city. I'm exploring a legislative fix at the state level.",
-      "Tell me if you rely on these routes and what the impact would be.",
+    "east-harlem-rezoning": [
+      "A developer is proposing 350 units at 125th St and Lexington Ave with 25% set aside as permanently affordable housing.",
+      "The board is weighing whether to negotiate for 30% or higher before the ULURP deadline. We need to hear from East Harlem residents — what level of affordability would make this project acceptable?",
+      "This thread is open for community input ahead of our next land use committee meeting.",
     ],
-    "gowanus-housing": [
-      "The board voted 18–6 to approve 240 units in Phase 2 of the Gowanus rezoning, with 30% set aside as permanently affordable.",
-      "We're opening this thread so residents can weigh in before Phase 3 negotiations begin.",
+    "knickerbocker-bike-lane": [
+      "DOT has proposed a protected bike lane on Knickerbocker Ave running from Flushing Ave to Myrtle Ave. The design would remove one side of street parking and add physical barriers.",
+      "I've heard strong feelings on both sides — cyclists who need safer routes and business owners worried about losing customer parking.",
+      "I want to hear directly from District 34 residents before I weigh in with DOT. Your response is anonymous.",
     ],
-    "eviction-protections": [
-      "Good cause eviction protections cover roughly 400,000 NYC tenants and are set to expire in June.",
-      "Landlord groups are pushing hard against renewal. I need to hear directly from tenants and community members before the vote.",
+    "ues-school-overcrowding": [
+      "Three elementary schools in the 73rd Assembly District are operating above 110% capacity. Class sizes are growing and families are being waitlisted.",
+      "I'm preparing a capital funding request for Albany. The two main options are building a new K–5 facility or expanding existing school buildings.",
+      "Parents, teachers, and community members — I need your input on which approach makes more sense for the neighborhood.",
     ],
   };
 
   return {
     ...item,
     body: bodies[item.id] ?? [item.snippet],
-    sourceLink: item.id === "astoria-casino"
-      ? { label: "Read the full CB4 meeting minutes from Mar 22", href: "https://www.nyc.gov/site/planning/index.page" }
-      : undefined,
+    sourceLink: item.id === "bushwick-inlet-park"
+      ? { label: "View the CB4 parks committee agenda", href: "https://www.nyc.gov/site/brooklyncb4/index.page" }
+      : item.id === "east-harlem-rezoning"
+        ? { label: "View the ULURP application materials", href: "https://www.nyc.gov/site/planning/applicants/applicant-portal/step5-702-ulurp.page" }
+        : undefined,
   };
 }
 
-export function getCommentsForThread(threadId: string): ThreadComment[] {
-  const comments: Record<string, ThreadComment[]> = {
-    "astoria-casino": [
-      { id: "c1", text: "The traffic study doesn't account for weekend gridlock near the Triboro. We need guarantees on mitigation before any vote.", timeAgo: "2h ago" },
-      { id: "c2", text: "The community benefits package funds two schools and the ferry landings. That's more than we usually get from waterfront deals.", timeAgo: "5h ago" },
-      { id: "c3", text: "I want to see binding affordability numbers on the adjacent parcels, not just the headline 30%.", timeAgo: "1d ago" },
-    ],
-  };
-  return comments[threadId] ?? [];
+export function getCommentsForThread(_threadId: string): ThreadComment[] {
+  return [];
 }
