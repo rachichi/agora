@@ -4,6 +4,7 @@ export type FeedItem = {
     initials: string;
     name: string;
     role: string;
+    avatar?: string;
   };
   headline: string;
   snippet: string;

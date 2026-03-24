@@ -2,6 +2,7 @@ import { CommentForm } from "@/components/thread/CommentForm";
 import { CommentList } from "@/components/thread/CommentList";
 import { getCommentsForThread, getThreadById } from "@/lib/data";
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -36,12 +37,22 @@ export default async function ThreadPage({ params }: Props) {
 
       {/* Author */}
       <div className="flex items-center gap-3">
-        <div
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-200 text-xs font-semibold text-neutral-700"
-          aria-hidden
-        >
-          {thread.author.initials}
-        </div>
+        {thread.author.avatar ? (
+          <Image
+            src={thread.author.avatar}
+            alt={thread.author.name}
+            width={40}
+            height={40}
+            className="h-10 w-10 shrink-0 rounded-full object-cover"
+          />
+        ) : (
+          <div
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-200 text-xs font-semibold text-neutral-700"
+            aria-hidden
+          >
+            {thread.author.initials}
+          </div>
+        )}
         <div>
           <div className="flex flex-wrap items-center gap-2 text-sm">
             <span className="font-semibold text-neutral-900">{thread.author.name}</span>

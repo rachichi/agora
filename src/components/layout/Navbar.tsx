@@ -11,7 +11,7 @@ export function Navbar() {
           Agora<span className="text-rose-600">.</span>
         </Link>
         <p className="hidden text-sm text-neutral-500 sm:block">
-          Local governments, community voices
+          Community voices to government decisions
         </p>
       </div>
     </header>

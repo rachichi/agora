@@ -23,7 +23,7 @@ export const FEED_ITEMS: FeedItem[] = [
   },
   {
     id: "knickerbocker-bike-lane",
-    author: { initials: "JG", name: "Jennifer Gutiérrez", role: "City Council, D34" },
+    author: { initials: "JG", name: "Jennifer Gutiérrez", role: "City Council, D34", avatar: "/avatars/jengutierrez.jpg" },
     headline: "Knickerbocker Ave protected bike lane — should we fast-track installation?",
     snippet:
       "DOT proposed a protected lane from Flushing Ave to Myrtle Ave. I want to hear from residents and business owners before I push for accelerated construction.",
@@ -33,7 +33,7 @@ export const FEED_ITEMS: FeedItem[] = [
   },
   {
     id: "ues-school-overcrowding",
-    author: { initials: "AB", name: "Alex Bores", role: "Assembly, D73" },
+    author: { initials: "AB", name: "Alex Bores", role: "Assembly, D73", avatar: "/avatars/alexbores.jpg" },
     headline: "UES school overcrowding: should Albany fund a new K–5 facility or expand existing buildings?",
     snippet:
       "Three elementary schools in the district are over 110% capacity. I'm drafting a capital funding request and need parent and community input on the best path forward.",

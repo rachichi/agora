@@ -1,4 +1,5 @@
 import type { FeedItem } from "@/lib/types";
+import Image from "next/image";
 import Link from "next/link";
 
 type Props = {
@@ -9,12 +10,22 @@ export function FeedCard({ item }: Props) {
   return (
     <article className="border-b border-neutral-200 py-6">
       <div className="flex items-start gap-3">
-        <div
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-200 text-xs font-semibold text-neutral-700"
-          aria-hidden
-        >
-          {item.author.initials}
-        </div>
+        {item.author.avatar ? (
+          <Image
+            src={item.author.avatar}
+            alt={item.author.name}
+            width={40}
+            height={40}
+            className="h-10 w-10 shrink-0 rounded-full object-cover"
+          />
+        ) : (
+          <div
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-200 text-xs font-semibold text-neutral-700"
+            aria-hidden
+          >
+            {item.author.initials}
+          </div>
+        )}
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
             <span className="font-semibold text-neutral-900">{item.author.name}</span>
