@@ -1,35 +1,31 @@
-# Agora
+# Agora — MVP
 
-A civic forum that publishes verified local government decisions and opens them for anonymous public input. Topics come directly from meeting minutes and town hall notes posted by elected officials and community boards.
+A minimal civic forum where verified officials post topics from local government meetings and the public responds anonymously.
 
-## Features
+## MVP features
 
-- **Feed** — Browse open topics from NYC officials and community boards, filtered by borough. Each card shows the author, verification badge, sentiment bar, response count, and time remaining.
-- **Thread** — Read the full context behind a decision, weigh in anonymously (support / oppose / undecided), and browse community comments sorted by popularity or stance.
-- **Sidebar** — Active officials, recent decisions, top responding zip codes, related topics, and source documents linked to NYC OpenData.
-- **Anonymous input** — Residents submit responses tied to a zip code with no account required.
+1. **Feed** — A simple list of official posts (hardcoded). Each card shows the author, headline, tags, comment count, and date.
+2. **Thread** — Click into a topic to read the full post and leave an anonymous comment.
+3. **Email verification** — Before responding, users verify their email via a magic-link flow to prevent spam. (Demo includes a shortcut button to simulate verification.)
 
 ## Tech stack
 
-| Layer     | Technology                          |
-| --------- | ----------------------------------- |
-| Framework | Next.js 15 (App Router)             |
-| Language  | TypeScript                          |
-| Styling   | Tailwind CSS 3                      |
-| Fonts     | Inter (UI) + Source Serif 4 (body)  |
-| Data      | Static mock data in `src/lib/data.ts` (swap for an API) |
+| Layer     | Technology                     |
+| --------- | ------------------------------ |
+| Framework | Next.js 15 (App Router)        |
+| Language  | TypeScript                     |
+| Styling   | Tailwind CSS 3                 |
+| Font      | Inter via `next/font`          |
+| Data      | Hardcoded in `src/lib/data.ts` |
 
 ## Getting started
 
 ```bash
-# Install dependencies
 npm install
-
-# Start the dev server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the feed.
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Project structure
 
@@ -38,38 +34,31 @@ src/
 ├── app/
 │   ├── page.tsx                 # Feed page
 │   ├── thread/[id]/page.tsx     # Thread page
-│   ├── not-found.tsx            # 404 page
-│   ├── layout.tsx               # Root layout with Navbar
-│   └── globals.css              # Tailwind base styles
+│   ├── not-found.tsx            # 404
+│   ├── layout.tsx               # Root layout + Navbar
+│   └── globals.css              # Tailwind base
 ├── components/
 │   ├── feed/
-│   │   ├── BoroughFilter.tsx    # Borough tab navigation
-│   │   ├── FeedCard.tsx         # Individual feed item
-│   │   ├── FeedSidebar.tsx      # Right sidebar (officials, decisions, links)
-│   │   └── InfoBanner.tsx       # "How Local works" banner
+│   │   └── FeedCard.tsx         # Feed item card
 │   ├── thread/
-│   │   ├── ThreadArticle.tsx    # Full post content
-│   │   ├── WeighInBox.tsx       # Anonymous voting + comment form
-│   │   ├── CommentThread.tsx    # Comment list with sorting tabs
-│   │   └── ThreadSidebar.tsx    # Stats, zip codes, related topics
-│   ├── layout/
-│   │   └── Navbar.tsx           # Top navigation bar
-│   └── ui/
-│       └── SentimentBar.tsx     # Reusable sentiment progress bar
-├── lib/
-│   ├── data.ts                  # Mock feed items, comments, sidebar data
-│   └── types.ts                 # TypeScript type definitions
-└── reference/
-    ├── Feed.png                 # Figma design reference
-    └── Thread.png               # Figma design reference
+│   │   ├── VerifyEmail.tsx      # Email magic-link gate
+│   │   ├── CommentForm.tsx      # Anonymous comment (post-verification)
+│   │   └── CommentList.tsx      # Comment list
+│   └── layout/
+│       └── Navbar.tsx           # Minimal top bar
+└── lib/
+    ├── data.ts                  # Mock data
+    └── types.ts                 # TypeScript types
 ```
 
-## Design reference
+## What's not in the MVP
 
-The UI follows two Figma screens located in `src/reference/`:
+- Borough filtering, sentiment bars, sidebar panels, voting buttons
+- Real email delivery / magic-link backend
+- Database persistence
+- User accounts or profiles
 
-- **Feed.png** — Borough filter, info banner, feed cards with sentiment bars, right sidebar with active officials, recent decisions, and footer links.
-- **Thread.png** — Two-column layout with the full post, anonymous weigh-in module, labeled sentiment bar, threaded comments with official replies, and a data sidebar.
+These are scoped for the future-state branch (`20260323-futurestate`).
 
 ## License
 

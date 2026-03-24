@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Source_Serif_4 } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import "./globals.css";
 
@@ -9,16 +9,10 @@ const inter = Inter({
   display: "swap",
 });
 
-const sourceSerif = Source_Serif_4({
-  subsets: ["latin"],
-  variable: "--font-source-serif",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   title: "Agora — Local government, open for input",
   description:
-    "Verified topics from meeting notes and town halls. Weigh in anonymously on decisions affecting your neighborhood.",
+    "Verified topics from elected officials. Weigh in anonymously on decisions affecting your neighborhood.",
 };
 
 export default function RootLayout({
@@ -27,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${sourceSerif.variable}`}>
+    <html lang="en" className={inter.variable}>
       <body>
         <Navbar />
         {children}
