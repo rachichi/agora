@@ -13,9 +13,13 @@ export type SentimentSlice = {
   tone: "support" | "neutral" | "oppose";
 };
 
+export type BadgeType = "official" | "board";
+
 export type FeedItem = {
   id: string;
   accent: "blue" | "green" | "amber";
+  badge: BadgeType;
+  fromMinutes: boolean;
   author: {
     initials: string;
     name: string;
@@ -30,6 +34,20 @@ export type FeedItem = {
   sentiment: SentimentSlice[];
   daysLeft: number;
   boroughs: Borough[];
+};
+
+export type ActiveOfficial = {
+  initials: string;
+  name: string;
+  role: string;
+  topics: number;
+};
+
+export type RecentDecision = {
+  id: string;
+  title: string;
+  board: string;
+  date: string;
 };
 
 export type ThreadDetail = FeedItem & {

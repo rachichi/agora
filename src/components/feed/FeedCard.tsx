@@ -20,7 +20,7 @@ export function FeedCard({ item }: Props) {
     >
       <div className="flex flex-wrap items-start gap-3">
         <div
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-200 text-sm font-semibold text-neutral-700"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-200 text-xs font-semibold text-neutral-700"
           aria-hidden
         >
           {item.author.initials}
@@ -28,50 +28,56 @@ export function FeedCard({ item }: Props) {
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
             <span className="font-semibold text-neutral-900">{item.author.name}</span>
-            <span className="text-neutral-500">{item.author.role}</span>
-            <span className="inline-flex items-center gap-1 rounded-full bg-agora-blue-soft px-2 py-0.5 text-xs font-medium text-agora-blue">
-              <CheckIcon className="h-3.5 w-3.5" aria-hidden />
-              Official
-            </span>
-            <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-800">
-              <FlagIcon className="h-3.5 w-3.5 text-agora-minutes" aria-hidden />
-              From minutes
-            </span>
+            {item.author.role ? (
+              <span className="text-neutral-500">· {item.author.role}</span>
+            ) : null}
+            {item.badge === "official" ? (
+              <span className="inline-flex items-center gap-1 rounded-full bg-agora-blue-soft px-2 py-0.5 text-xs font-medium text-agora-blue">
+                <CheckIcon className="h-3.5 w-3.5" aria-hidden />
+                Official
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-1 rounded-full bg-agora-blue-soft px-2 py-0.5 text-xs font-medium text-agora-blue">
+                <CheckIcon className="h-3.5 w-3.5" aria-hidden />
+                Board
+              </span>
+            )}
+            {item.fromMinutes ? (
+              <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-800">
+                <FlagIcon className="h-3.5 w-3.5 text-agora-minutes" aria-hidden />
+                From minutes
+              </span>
+            ) : null}
           </div>
 
-          <h2 className="mt-3 font-serif text-xl font-bold leading-snug text-neutral-950 sm:text-2xl">
+          <h2 className="mt-3 font-serif text-lg font-bold leading-snug text-neutral-950 sm:text-xl">
             <Link href={`/thread/${item.id}`} className="hover:underline">
               {item.headline}
             </Link>
           </h2>
-          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-neutral-600">{item.snippet}</p>
+          <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-neutral-600">{item.snippet}</p>
 
-          <div className="mt-4 flex flex-wrap items-center gap-2">
-            {item.tags.map((t) => (
-              <span
-                key={t}
-                className="rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-600"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-
-          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-neutral-600">
+          <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-neutral-600">
+            <div className="flex flex-wrap gap-2">
+              {item.tags.map((t) => (
+                <span
+                  key={t}
+                  className="rounded bg-neutral-100 px-2 py-0.5 text-xs font-semibold text-neutral-700"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
             <span>{item.responses.toLocaleString()} responses</span>
             <span>{item.comments.toLocaleString()} comments</span>
           </div>
 
-          <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+          <div className="mt-3 flex items-center gap-3">
             <div className="min-w-0 flex-1">
               <SentimentBar slices={item.sentiment} />
             </div>
-            <div className="flex shrink-0 items-center justify-between gap-3 sm:justify-end">
-              <span className="text-sm font-medium text-neutral-700">{item.sentimentSummary}</span>
-              <span className="rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-700">
-                {item.daysLeft} days left
-              </span>
-            </div>
+            <span className="shrink-0 text-xs font-medium text-neutral-600">{item.sentimentSummary}</span>
+            <span className="shrink-0 text-xs text-neutral-400">{item.daysLeft} days left</span>
           </div>
         </div>
       </div>

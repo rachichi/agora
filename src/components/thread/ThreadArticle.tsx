@@ -24,11 +24,13 @@ export function ThreadArticle({ thread }: Props) {
             </div>
             <div className="mt-1 flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1 rounded-full bg-agora-blue-soft px-2 py-0.5 text-xs font-medium text-agora-blue">
-                Verified Official
+                {thread.badge === "official" ? "Verified Official" : "Board"}
               </span>
-              <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-0.5 text-xs font-medium text-orange-800">
-                From meeting minutes
-              </span>
+              {thread.fromMinutes ? (
+                <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-0.5 text-xs font-medium text-orange-800">
+                  From meeting minutes
+                </span>
+              ) : null}
             </div>
           </div>
         </div>

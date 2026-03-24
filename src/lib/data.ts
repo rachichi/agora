@@ -1,9 +1,9 @@
-import type { Borough, FeedItem, ThreadComment, ThreadDetail } from "./types";
+import type { ActiveOfficial, Borough, FeedItem, RecentDecision, ThreadComment, ThreadDetail } from "./types";
 
 const astoriaBody = [
-  "Community Board 4 voted 28–8 to recommend approval of the Astoria waterfront casino proposal, citing projected job creation and infrastructure investments tied to the development agreement.",
-  "The board’s resolution notes that the project would fund two new ferry landings, expand waterfront public access, and require 30% permanently affordable housing in adjacent rezoned parcels.",
-  "Mayor Mamdani’s office posted the discussion summary from the March 22 meeting so residents can review what was said before the City Council hearing next month.",
+  "Community Board 4 voted 14–9 against it last Tuesday, but the final call rests with City Council. Before I vote, I want to hear from Queens residents directly.",
+  "The board's resolution notes that the project would fund two new ferry landings, expand waterfront public access, and require 30% permanently affordable housing in adjacent rezoned parcels.",
+  "Mayor Mamdani's office posted the discussion summary from the March 22 meeting so residents can review what was said before the City Council hearing next month.",
 ];
 
 export const BOROUGHS: Borough[] = [
@@ -20,15 +20,13 @@ export const FEED_ITEMS: FeedItem[] = [
   {
     id: "astoria-casino",
     accent: "blue",
-    author: {
-      initials: "ZM",
-      name: "Zohran Mamdani",
-      role: "NYC Mayor",
-    },
+    badge: "official",
+    fromMinutes: true,
+    author: { initials: "ZM", name: "Zohran Mamdani", role: "NYC Mayor" },
     headline: "Should the city approve the Astoria waterfront casino proposal?",
     snippet:
-      "Community Board 4 voted 28–8 to recommend approval, citing jobs and infrastructure. Read the summary from the March 22 meeting before the Council hearing…",
-    tags: ["QUEENS", "ZONING", "DEVELOPMENT"],
+      "CB4 voted 14–9 against it last Tuesday, but the final call rests with City Council. Before I vote, I want to hear from Queens reside…",
+    tags: ["QUEENS", "ZONING"],
     responses: 2841,
     comments: 847,
     sentimentSummary: "41% oppose",
@@ -41,18 +39,16 @@ export const FEED_ITEMS: FeedItem[] = [
     boroughs: ["ALL NYC", "QUEENS"],
   },
   {
-    id: "bus-lane-cuts",
-    accent: "green",
-    author: {
-      initials: "ZM",
-      name: "Zohran Mamdani",
-      role: "NYC Mayor",
-    },
-    headline: "Should the city roll back 24/7 bus lane enforcement on 5 corridors?",
+    id: "mta-bus-cuts",
+    accent: "blue",
+    badge: "official",
+    fromMinutes: false,
+    author: { initials: "LR", name: "Linda Rosenthal", role: "NY Assembly, D67" },
+    headline: "The MTA wants to cut 6 bus routes in upper Manhattan. Should Albany intervene?",
     snippet:
-      "DOT presented options to limit camera hours on select routes. Meeting notes include community feedback from Brooklyn and Manhattan stakeholders…",
-    tags: ["BROOKLYN", "MANHATTAN", "TRANSIT"],
-    responses: 1922,
+      "These routes serve some of the lowest-income riders in the city. I'm exploring a legislative fix — tell me if you rely on the M11, M…",
+    tags: ["MANHATTAN", "TRANSIT"],
+    responses: 1203,
     comments: 412,
     sentimentSummary: "78% oppose cuts",
     sentiment: [
@@ -60,32 +56,128 @@ export const FEED_ITEMS: FeedItem[] = [
       { label: "Neutral", percent: 10, tone: "neutral" },
       { label: "Oppose", percent: 78, tone: "oppose" },
     ],
-    daysLeft: 21,
-    boroughs: ["ALL NYC", "BROOKLYN", "MANHATTAN"],
+    daysLeft: 6,
+    boroughs: ["ALL NYC", "MANHATTAN"],
   },
   {
-    id: "open-streets",
-    accent: "amber",
-    author: {
-      initials: "ER",
-      name: "Erica Richardson",
-      role: "Queens Borough President",
-    },
-    headline: "Extend Open Streets on 34th Ave through winter weekends?",
+    id: "gowanus-housing",
+    accent: "green",
+    badge: "board",
+    fromMinutes: true,
+    author: { initials: "CB6", name: "Brooklyn Community Board 6", role: "" },
+    headline: "We approved 240 units in Gowanus Phase 2 — with 30% affordable. Is that enough?",
     snippet:
-      "CB3 requested a pilot extension with traffic mitigation on cross streets. Notes from the town hall include merchant concerns and parent survey results…",
-    tags: ["QUEENS", "STREETS", "TRANSIT"],
-    responses: 756,
-    comments: 203,
-    sentimentSummary: "56% support",
+      "Passed 18–6 at Tuesday's full board meeting. We're opening this thread so residents can weigh in before Phase 3 negotiations b…",
+    tags: ["BROOKLYN", "HOUSING"],
+    responses: 634,
+    comments: 189,
+    sentimentSummary: "53% want more",
     sentiment: [
-      { label: "Support", percent: 56, tone: "support" },
-      { label: "Neutral", percent: 18, tone: "neutral" },
-      { label: "Oppose", percent: 26, tone: "oppose" },
+      { label: "Support", percent: 30, tone: "support" },
+      { label: "Neutral", percent: 17, tone: "neutral" },
+      { label: "Oppose", percent: 53, tone: "oppose" },
     ],
-    daysLeft: 9,
+    daysLeft: 21,
+    boroughs: ["ALL NYC", "BROOKLYN"],
+  },
+  {
+    id: "pfizer-site",
+    accent: "blue",
+    badge: "official",
+    fromMinutes: false,
+    author: { initials: "SN", name: "Sandy Nurse", role: "NYC Council, D37" },
+    headline: "Should we convert the former Pfizer site in Bushwick into mixed-income housing or a manufacturing hub?",
+    snippet:
+      "The site has been vacant for 11 years. Two proposals are on the table — I want the community to weigh in before the land use c…",
+    tags: ["BROOKLYN", "LAND USE"],
+    responses: 891,
+    comments: 303,
+    sentimentSummary: "54% housing",
+    sentiment: [
+      { label: "Support", percent: 54, tone: "support" },
+      { label: "Neutral", percent: 16, tone: "neutral" },
+      { label: "Oppose", percent: 30, tone: "oppose" },
+    ],
+    daysLeft: 11,
+    boroughs: ["ALL NYC", "BROOKLYN"],
+  },
+  {
+    id: "casino-revisit",
+    accent: "amber",
+    badge: "board",
+    fromMinutes: true,
+    author: { initials: "CB4", name: "Queens Community Board 4", role: "" },
+    headline: "We rejected the casino 14–9 — but should we revisit in 90 days as the motion allows?",
+    snippet:
+      "Several members want to reopen the question with revised traffic and addiction impact studies in hand. What does the communi…",
+    tags: ["QUEENS", "ZONING"],
+    responses: 522,
+    comments: 211,
+    sentimentSummary: "47% say no revisit",
+    sentiment: [
+      { label: "Support", percent: 34, tone: "support" },
+      { label: "Neutral", percent: 19, tone: "neutral" },
+      { label: "Oppose", percent: 47, tone: "oppose" },
+    ],
+    daysLeft: 14,
     boroughs: ["ALL NYC", "QUEENS"],
   },
+  {
+    id: "eviction-protections",
+    accent: "blue",
+    badge: "official",
+    fromMinutes: false,
+    author: { initials: "JS", name: "Julia Salazar", role: "NY Senate, D18" },
+    headline: "Good cause eviction protections are expiring in June. Should Albany renew and expand them?",
+    snippet:
+      "The current law covers roughly 400,000 NYC tenants. Landlord groups are pushing hard against renewal. Tenants — I need to h…",
+    tags: ["BROOKLYN", "HOUSING", "TENANT RIGHTS"],
+    responses: 1740,
+    comments: 598,
+    sentimentSummary: "71% support renewal",
+    sentiment: [
+      { label: "Support", percent: 71, tone: "support" },
+      { label: "Neutral", percent: 11, tone: "neutral" },
+      { label: "Oppose", percent: 18, tone: "oppose" },
+    ],
+    daysLeft: 2,
+    boroughs: ["ALL NYC", "BROOKLYN"],
+  },
+  {
+    id: "red-hook-resilience",
+    accent: "blue",
+    badge: "official",
+    fromMinutes: false,
+    author: { initials: "AA", name: "Alexa Avilés", role: "NYC Council, D38" },
+    headline: "Should Red Hook get priority status for the city's coastal resilience funding?",
+    snippet:
+      "The neighborhood flooded twice in 18 months. I'm pushing for a dedicated allocation in the capital budget — but I need commun…",
+    tags: ["BROOKLYN", "CLIMATE"],
+    responses: 477,
+    comments: 142,
+    sentimentSummary: "82% support",
+    sentiment: [
+      { label: "Support", percent: 82, tone: "support" },
+      { label: "Neutral", percent: 9, tone: "neutral" },
+      { label: "Oppose", percent: 9, tone: "oppose" },
+    ],
+    daysLeft: 18,
+    boroughs: ["ALL NYC", "BROOKLYN"],
+  },
+];
+
+export const ACTIVE_OFFICIALS: ActiveOfficial[] = [
+  { initials: "ZM", name: "Zohran Mamdani", role: "NYC Mayor", topics: 3 },
+  { initials: "LR", name: "Linda Rosenthal", role: "NY Assembly, D67", topics: 1 },
+  { initials: "SN", name: "Sandy Nurse", role: "NYC Council, D37", topics: 1 },
+  { initials: "JS", name: "Julia Salazar", role: "NY Senate, D18", topics: 1 },
+  { initials: "AA", name: "Alexa Avilés", role: "NYC Council, D38", topics: 1 },
+];
+
+export const RECENT_DECISIONS: RecentDecision[] = [
+  { id: "gowanus-housing", title: "Gowanus Phase 2 — 240 units approved", board: "Brooklyn CB6", date: "Mar 19" },
+  { id: "casino-revisit", title: "Astoria casino rejected 14–9", board: "Queens CB4", date: "Mar 18" },
+  { id: "pfizer-site", title: "Bushwick land-use hearing scheduled", board: "Brooklyn CB4", date: "Mar 15" },
 ];
 
 function feedToThread(item: FeedItem): ThreadDetail {
@@ -107,28 +199,15 @@ function feedToThread(item: FeedItem): ThreadDetail {
         { code: "11105", share: 40 },
       ],
       related: [
-        {
-          id: "bus-lane-cuts",
-          title: "24/7 bus lane enforcement rollback",
-          meta: "Brooklyn CB6 · 1,922 responses",
-        },
-        {
-          id: "open-streets",
-          title: "34th Ave Open Streets winter pilot",
-          meta: "Queens CB3 · 756 responses",
-        },
-        {
-          id: "bus-lane-cuts",
-          title: "Cross-Hudson transit coordination",
-          meta: "Manhattan CB4 · 340 responses",
-        },
+        { id: "casino-revisit", title: "CB4 casino revisit motion", meta: "Queens CB4 · 522 responses" },
+        { id: "mta-bus-cuts", title: "MTA bus route cuts", meta: "Manhattan · 1,203 responses" },
+        { id: "gowanus-housing", title: "Gowanus Phase 2 affordability", meta: "Brooklyn CB6 · 634 responses" },
       ],
       sourceDoc: {
         title: "CB4 Meeting Minutes",
         date: "March 22, 2026",
         location: "Astoria, Queens",
-        resolution:
-          "The board voted to recommend approval pending Council review of the community benefits agreement.",
+        resolution: "The board voted to recommend approval pending Council review of the community benefits agreement.",
         href: "https://opendata.cityofnewyork.us/",
       },
     };
@@ -181,11 +260,11 @@ export const THREAD_COMMENTS: ThreadComment[] = [
     residentMeta: "Astoria resident, 14 years",
     stance: "Opposes",
     timeAgo: "2h ago",
-    text: "The traffic study doesn’t account for weekend gridlock near the Triboro. We need guarantees on mitigation before any vote.",
+    text: "The traffic study doesn't account for weekend gridlock near the Triboro. We need guarantees on mitigation before any vote.",
     upvotes: 214,
     officialReply: {
       author: "Zohran Mamdani",
-      text: "Thanks — DOT will publish an updated weekend model before the hearing. I’ve asked the agency to hold a walkthrough on 31st St.",
+      text: "Thanks — DOT will publish an updated weekend model before the hearing. I've asked the agency to hold a walkthrough on 31st St.",
     },
   },
   {
@@ -194,7 +273,7 @@ export const THREAD_COMMENTS: ThreadComment[] = [
     residentMeta: "Long Island City, 11101",
     stance: "Supports",
     timeAgo: "5h ago",
-    text: "The community benefits package funds two schools and the ferry landings. That’s more than we usually get from waterfront deals.",
+    text: "The community benefits package funds two schools and the ferry landings. That's more than we usually get from waterfront deals.",
     upvotes: 98,
   },
   {
