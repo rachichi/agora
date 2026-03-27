@@ -15,7 +15,7 @@ export const FEED_ITEMS: FeedItem[] = [
     headline: "Should e-bike and bicycle riders receive criminal court summonses or traffic tickets for running red lights?",
     snippet:
       "NYPD recently began issuing criminal court summonses to cyclists and e-bike riders for running red lights. We want to hear from you before we finalize our recommendation to the city.",
-    tags: ["BUSHWICK", "PUBLIC SAFETY", "TRANSPORTATION"],
+    tags: ["PUBLIC SAFETY", "TRANSPORTATION"],
     neighborhoods: "Bushwick, Williamsburg (11206, 11221, 11237)",
     postedAt: "Mar 27, 2026",
     commentCount: 0,
@@ -26,7 +26,7 @@ export const FEED_ITEMS: FeedItem[] = [
     headline: "Should a new cannabis dispensary open at 1271 Broadway?",
     snippet:
       "Adult-use retailer proposed for 1271 Broadway, hours 10am–9pm. Concerns raised about proximity to shelters and transitional housing. We want to hear from you before we finalize our decision.",
-    tags: ["BUSHWICK", "CANNABIS", "PUBLIC SAFETY", "ECONOMIC DEVELOPMENT"],
+    tags: ["CANNABIS", "PUBLIC SAFETY", "ECONOMIC DEVELOPMENT"],
     neighborhoods: "Bushwick (11221, 11237)",
     postedAt: "Mar 27, 2026",
     commentCount: 0,
@@ -37,7 +37,7 @@ export const FEED_ITEMS: FeedItem[] = [
     headline: "The Emerald Dispensary has operated on 85 Suydam for two years. Should their temporary license become permanent?",
     snippet:
       "Moving from provisional to permanent license with strong community support. Issue: proposed hours of 9am–2am and proximity to sensitive community sites. We want to hear from you before we finalize our decision.",
-    tags: ["BUSHWICK", "CANNABIS", "LICENSING"],
+    tags: ["CANNABIS", "LICENSING"],
     neighborhoods: "Bushwick (11221, 11237)",
     postedAt: "Mar 27, 2026",
     commentCount: 0,
@@ -48,7 +48,7 @@ export const FEED_ITEMS: FeedItem[] = [
     headline: "The city's new Citywide Industrial Plan puts most of Bushwick's industrial land in a category that could allow nightlife, housing, and non-industrial development. Is that the right call?",
     snippet:
       "The City Council passed a comprehensive citywide industrial plan in 2024. The plan affects industrial zones across the city, including several in Bushwick. We want to hear from you before we finalize our recommendation.",
-    tags: ["BUSHWICK", "ZONING", "INDUSTRIAL", "JOBS", "HOUSING"],
+    tags: ["ZONING", "INDUSTRIAL", "JOBS", "HOUSING"],
     neighborhoods: "Bushwick, East Williamsburg (11206, 11221, 11237)",
     postedAt: "Mar 27, 2026",
     commentCount: 0,
@@ -59,7 +59,7 @@ export const FEED_ITEMS: FeedItem[] = [
     headline: "The Cathedral of Joy at Evergreen and George Knoll (the old Rheingold Brewery cafeteria, currently a church) may be sold. What should happen to the space?",
     snippet:
       "The congregation is shrinking and potentially selling the space, currently zoned M3-1 industrial. Concern that loss of this site would further erode remaining industrial spaces in Bushwick.",
-    tags: ["BUSHWICK", "HOUSING", "ZONING", "COMMUNITY SPACE"],
+    tags: ["HOUSING", "ZONING", "COMMUNITY SPACE"],
     neighborhoods: "Bushwick (11221, 11237)",
     postedAt: "Mar 27, 2026",
     commentCount: 0,
