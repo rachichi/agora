@@ -29,13 +29,12 @@ export function FeedCard({ item }: Props) {
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
             <span className="font-semibold text-neutral-900">{item.author.name}</span>
-            {item.author.role ? (
-              <span className="text-neutral-500">· {item.author.role}</span>
-            ) : null}
+            <span className="text-neutral-500">· {item.author.title}, {item.author.organization}</span>
             <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700">
-              ✓ {item.author.role ? "Official" : "Board"}
+              ✓ Official
             </span>
           </div>
+          <p className="mt-0.5 text-xs text-neutral-500">{item.neighborhoods}</p>
 
           <h2 className="mt-2 text-lg font-bold leading-snug text-neutral-950">
             <Link href={`/thread/${item.id}`} className="hover:underline">

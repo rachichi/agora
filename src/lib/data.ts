@@ -1,44 +1,67 @@
 import type { FeedItem, ThreadComment, ThreadDetail } from "./types";
 
+const CELESTINA_LEON = {
+  initials: "CL",
+  name: "Celestina Leon",
+  title: "District Manager",
+  organization: "Brooklyn Community Board 4",
+  avatar: "/avatars/celestinaleon.jpg",
+} as const;
+
 export const FEED_ITEMS: FeedItem[] = [
   {
-    id: "bushwick-inlet-park",
-    author: { initials: "CB4", name: "Brooklyn Community Board 4", role: "" },
-    headline: "Should Bushwick Inlet Park Phase 4 prioritize active recreation or green space?",
+    id: "ebike-red-light-summons",
+    author: CELESTINA_LEON,
+    headline: "Should e-bike and bicycle riders receive criminal court summonses or traffic tickets for running red lights?",
     snippet:
-      "The city released two design options for the remaining 4 acres. We want to hear from neighbors before our parks committee votes next month.",
-    tags: ["BROOKLYN", "PARKS"],
-    postedAt: "Mar 22, 2026",
+      "NYPD recently began issuing criminal court summonses to cyclists and e-bike riders for running red lights. We want to hear from you before we finalize our recommendation to the city.",
+    tags: ["BUSHWICK", "PUBLIC SAFETY", "TRANSPORTATION"],
+    neighborhoods: "Bushwick, Williamsburg (11206, 11221, 11237)",
+    postedAt: "Mar 27, 2026",
     commentCount: 0,
   },
   {
-    id: "east-harlem-rezoning",
-    author: { initials: "CB11", name: "Manhattan Community Board 11", role: "" },
-    headline: "East Harlem rezoning update: should the board push for deeper affordability in new developments?",
+    id: "broadway-cannabis-dispensary",
+    author: CELESTINA_LEON,
+    headline: "Should a new cannabis dispensary open at 1271 Broadway?",
     snippet:
-      "Developers are proposing 350 units at 125th and Lex with 25% affordable. The board is considering whether to negotiate for 30% or more before the ULURP deadline.",
-    tags: ["MANHATTAN", "HOUSING"],
-    postedAt: "Mar 21, 2026",
+      "Adult-use retailer proposed for 1271 Broadway, hours 10am–9pm. Concerns raised about proximity to shelters and transitional housing. We want to hear from you before we finalize our decision.",
+    tags: ["BUSHWICK", "CANNABIS", "PUBLIC SAFETY", "ECONOMIC DEVELOPMENT"],
+    neighborhoods: "Bushwick (11221, 11237)",
+    postedAt: "Mar 27, 2026",
     commentCount: 0,
   },
   {
-    id: "knickerbocker-bike-lane",
-    author: { initials: "JG", name: "Jennifer Gutiérrez", role: "City Council, D34", avatar: "/avatars/jengutierrez.jpg" },
-    headline: "Knickerbocker Ave protected bike lane — should we fast-track installation?",
+    id: "emerald-dispensary-permanent",
+    author: CELESTINA_LEON,
+    headline: "The Emerald Dispensary has operated on 85 Suydam for two years. Should their temporary license become permanent?",
     snippet:
-      "DOT proposed a protected lane from Flushing Ave to Myrtle Ave. I want to hear from residents and business owners before I push for accelerated construction.",
-    tags: ["BROOKLYN", "TRANSIT"],
-    postedAt: "Mar 20, 2026",
+      "Moving from provisional to permanent license with strong community support. Issue: proposed hours of 9am–2am and proximity to sensitive community sites. We want to hear from you before we finalize our decision.",
+    tags: ["BUSHWICK", "CANNABIS", "LICENSING"],
+    neighborhoods: "Bushwick (11221, 11237)",
+    postedAt: "Mar 27, 2026",
     commentCount: 0,
   },
   {
-    id: "ues-school-overcrowding",
-    author: { initials: "AB", name: "Alex Bores", role: "Assembly, D73", avatar: "/avatars/alexbores.jpg" },
-    headline: "UES school overcrowding: should Albany fund a new K–5 facility or expand existing buildings?",
+    id: "industrial-plan-bushwick",
+    author: CELESTINA_LEON,
+    headline: "The city's new Citywide Industrial Plan puts most of Bushwick's industrial land in a category that could allow nightlife, housing, and non-industrial development. Is that the right call?",
     snippet:
-      "Three elementary schools in the district are over 110% capacity. I'm drafting a capital funding request and need parent and community input on the best path forward.",
-    tags: ["MANHATTAN", "EDUCATION"],
-    postedAt: "Mar 19, 2026",
+      "The City Council passed a comprehensive citywide industrial plan in 2024. The plan affects industrial zones across the city, including several in Bushwick. We want to hear from you before we finalize our recommendation.",
+    tags: ["BUSHWICK", "ZONING", "INDUSTRIAL", "JOBS", "HOUSING"],
+    neighborhoods: "Bushwick, East Williamsburg (11206, 11221, 11237)",
+    postedAt: "Mar 27, 2026",
+    commentCount: 0,
+  },
+  {
+    id: "cathedral-of-joy",
+    author: CELESTINA_LEON,
+    headline: "The Cathedral of Joy at Evergreen and George Knoll (the old Rheingold Brewery cafeteria, currently a church) may be sold. What should happen to the space?",
+    snippet:
+      "The congregation is shrinking and potentially selling the space, currently zoned M3-1 industrial. Concern that loss of this site would further erode remaining industrial spaces in Bushwick.",
+    tags: ["BUSHWICK", "HOUSING", "ZONING", "COMMUNITY SPACE"],
+    neighborhoods: "Bushwick (11221, 11237)",
+    postedAt: "Mar 27, 2026",
     commentCount: 0,
   },
 ];
@@ -48,36 +71,45 @@ export function getThreadById(id: string): ThreadDetail | undefined {
   if (!item) return undefined;
 
   const bodies: Record<string, string[]> = {
-    "bushwick-inlet-park": [
-      "The city released two design concepts for the remaining 4 acres of Bushwick Inlet Park — one focused on sports fields and active recreation, the other on passive green space with native plantings.",
-      "Our parks committee will vote on a recommendation next month. Before we do, we want to hear from the community about what you actually need from this space.",
-      "Drop your thoughts below. All responses are anonymous.",
+    "ebike-red-light-summons": [
+      "NYPD recently began issuing criminal court summonses (instead of just traffic violations) to cyclists and e-bike riders for running red lights. Previously, such infractions were adjudicated in traffic court (similar to car drivers).",
+      "We want to hear from you before we finalize our recommendation to the city.",
+      "Do you think cyclists and e-bike riders should face criminal summonses or traffic tickets for running red lights? And who do you think should be held responsible when delivery riders behave recklessly?",
     ],
-    "east-harlem-rezoning": [
-      "A developer is proposing 350 units at 125th St and Lexington Ave with 25% set aside as permanently affordable housing.",
-      "The board is weighing whether to negotiate for 30% or higher before the ULURP deadline. We need to hear from East Harlem residents — what level of affordability would make this project acceptable?",
-      "This thread is open for community input ahead of our next land use committee meeting.",
+    "broadway-cannabis-dispensary": [
+      "Adult-use retailer, hours 10am–9pm.",
+      "Location concerns: Proximity to shelters and transitional housing; committee members raised issues about access by minors, safety, and potential advertising near shelters.",
+      "Applicant's response: Committed to security, ID scanning, and limiting advertising.",
+      "Arguments in favor: Provides legal, regulated alternative to illegal sales; contributes to economic development in corridors lacking businesses.",
+      "We want to hear from you before we finalize our decision.",
+      "Do you support a cannabis dispensary at this location? What conditions, if any, would make you more comfortable with it?",
     ],
-    "knickerbocker-bike-lane": [
-      "DOT has proposed a protected bike lane on Knickerbocker Ave running from Flushing Ave to Myrtle Ave. The design would remove one side of street parking and add physical barriers.",
-      "I've heard strong feelings on both sides — cyclists who need safer routes and business owners worried about losing customer parking.",
-      "I want to hear directly from District 34 residents before I weigh in with DOT. Your response is anonymous.",
+    "emerald-dispensary-permanent": [
+      "The Emerald Dispensary (not the same as the Broadway location) has operated on 85 Suydam for two years. They are moving from a provisional to a permanent license, with strong community support.",
+      "Issue: Very long hours (9am–2am); need for cautious consideration because of proximity to sensitive community sites (shelters, youth centers).",
+      "We want to hear from you before we finalize our decision.",
+      "Do you support making the 85 Suydam Emerald Dispensary's license permanent? And what do you think about the proposed operating hours of 9am to 2am?",
     ],
-    "ues-school-overcrowding": [
-      "Three elementary schools in the 73rd Assembly District are operating above 110% capacity. Class sizes are growing and families are being waitlisted.",
-      "I'm preparing a capital funding request for Albany. The two main options are building a new K–5 facility or expanding existing school buildings.",
-      "Parents, teachers, and community members — I need your input on which approach makes more sense for the neighborhood.",
+    "industrial-plan-bushwick": [
+      "The City Council passed a comprehensive citywide industrial plan in 2024, with the final version reportedly to be released the day after the board meeting.",
+      "The plan affects industrial zones across the city, including several in Bushwick and neighboring districts. These zones would allow new uses (nightlife, housing, non-industrial uses), subject to conditions.",
+      "We want to hear from you before we finalize our recommendation to the city.",
+      "Do you think Bushwick's industrial land should be protected from nightlife, housing, and non-industrial development?",
+    ],
+    "cathedral-of-joy": [
+      "The Cathedral of Joy at Evergreen and George Knoll (the old Rheingold Brewery cafeteria, currently a church) may be sold. The congregation is shrinking and potentially selling the space, which is currently zoned for heavy/intensive (M3-1) industrial use.",
+      "Concern that loss of this site to non-industrial or residential development would further erode remaining industrial spaces in Bushwick.",
+      "We want to hear from you before we finalize our recommendation to the city.",
+      "What do you think should happen to the Cathedral of Joy building if the congregation sells? Should the community fight to preserve it for a particular usage, and if so, what kind?",
     ],
   };
+
+  const meetingMinutes = { label: "Read our meeting minutes here", href: "https://www.nyc.gov/assets/brooklyncb4/downloads/pdf/minutes/2025/december-2025-minutes.pdf" };
 
   return {
     ...item,
     body: bodies[item.id] ?? [item.snippet],
-    sourceLink: item.id === "bushwick-inlet-park"
-      ? { label: "View the CB4 parks committee agenda", href: "https://www.nyc.gov/site/brooklyncb4/index.page" }
-      : item.id === "east-harlem-rezoning"
-        ? { label: "View the ULURP application materials", href: "https://www.nyc.gov/site/planning/applicants/applicant-portal/step5-702-ulurp.page" }
-        : undefined,
+    sourceLink: meetingMinutes,
   };
 }
 

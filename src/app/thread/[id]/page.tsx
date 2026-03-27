@@ -56,13 +56,12 @@ export default async function ThreadPage({ params }: Props) {
         <div>
           <div className="flex flex-wrap items-center gap-2 text-sm">
             <span className="font-semibold text-neutral-900">{thread.author.name}</span>
-            {thread.author.role ? (
-              <span className="text-neutral-500">· {thread.author.role}</span>
-            ) : null}
+            <span className="text-neutral-500">· {thread.author.title}, {thread.author.organization}</span>
             <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700">
-              ✓ {thread.author.role ? "Official" : "Board"}
+              ✓ Official
             </span>
           </div>
+          <p className="text-xs text-neutral-500">{thread.neighborhoods}</p>
           <p className="text-xs text-neutral-500">{thread.postedAt}</p>
         </div>
       </div>

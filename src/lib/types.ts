@@ -3,12 +3,14 @@ export type FeedItem = {
   author: {
     initials: string;
     name: string;
-    role: string;
+    title: string;
+    organization: string;
     avatar?: string;
   };
   headline: string;
   snippet: string;
   tags: string[];
+  neighborhoods: string;
   postedAt: string;
   commentCount: number;
 };
