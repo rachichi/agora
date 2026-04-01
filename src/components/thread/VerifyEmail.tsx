@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trpc } from "@/lib/trpc/client";
 
 type Board = { code: string; name: string };
 
@@ -24,19 +25,28 @@ export function VerifyEmail({
   const [zip, setZip] = useState("");
   const [email, setEmail] = useState("");
   const [yourBoards, setYourBoards] = useState<Board[]>([]);
-  const [notifyEmail, setNotifyEmail] = useState("");
   const [notifySubmitted, setNotifySubmitted] = useState(false);
+
+  const registerRespondent = trpc.verify.registerRespondent.useMutation();
+  const notifyMe = trpc.verify.notifyMe.useMutation({
+    onSuccess: () => setNotifySubmitted(true),
+  });
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!address.trim() || !zip.trim() || !email.trim()) return;
 
     if (validZipCodes.includes(zip)) {
+      registerRespondent.mutate({
+        email,
+        address,
+        zip,
+        communityBoardCode,
+      });
       setStep("email-sent");
     } else {
       const boards = lookupBoardsForZip(zip);
       setYourBoards(boards);
-      setNotifyEmail(email);
       setStep("blocked");
     }
   }
@@ -95,19 +105,29 @@ export function VerifyEmail({
                 id="notify-email"
                 type="email"
                 required
-                value={notifyEmail}
-                onChange={(e) => setNotifyEmail(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
                 className="min-w-0 flex-1 rounded-lg border border-amber-300 bg-white px-3 py-2 text-sm outline-none ring-amber-500/20 focus:border-amber-500 focus:ring-2"
               />
               <button
                 type="button"
+                disabled={notifyMe.isPending}
                 onClick={() => {
-                  if (notifyEmail.trim()) setNotifySubmitted(true);
+                  if (!email.trim()) return;
+                  const boardCode =
+                    yourBoards.length > 0
+                      ? yourBoards[0].code
+                      : "UNKNOWN";
+                  notifyMe.mutate({
+                    email,
+                    zip,
+                    communityBoardCode: boardCode,
+                  });
                 }}
-                className="shrink-0 rounded-lg bg-amber-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-amber-700"
+                className="shrink-0 rounded-lg bg-amber-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-amber-700 disabled:opacity-50"
               >
-                Notify me
+                {notifyMe.isPending ? "Saving…" : "Notify me"}
               </button>
             </div>
           </div>
@@ -207,8 +227,6 @@ export function VerifyEmail({
 }
 
 function lookupBoardsForZip(zip: string): Board[] {
-  // Inline lookup to avoid importing server code into client bundle.
-  // Matches the mapping in src/lib/communityBoards.ts.
   const ZIP_TO_BOARDS: Record<string, Board[]> = {
     "11211": [{ code: "BK-01", name: "Brooklyn Community Board 1" }],
     "11222": [{ code: "BK-01", name: "Brooklyn Community Board 1" }],

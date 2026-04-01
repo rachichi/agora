@@ -1,8 +1,11 @@
 import { FeedCard } from "@/components/feed/FeedCard";
 import { InfoBanner } from "@/components/feed/InfoBanner";
-import { FEED_ITEMS } from "@/lib/data";
+import { createServerCaller } from "@/server/trpc/caller";
 
-export default function FeedPage() {
+export default async function FeedPage() {
+  const caller = createServerCaller();
+  const items = await caller.post.list();
+
   return (
     <main className="mx-auto max-w-2xl px-4 pb-16 pt-8 sm:px-6">
       <InfoBanner />
@@ -10,7 +13,7 @@ export default function FeedPage() {
         Open for input
       </h1>
       <div className="mt-2">
-        {FEED_ITEMS.map((item) => (
+        {items.map((item) => (
           <FeedCard key={item.id} item={item} />
         ))}
       </div>

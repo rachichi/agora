@@ -35,12 +35,19 @@ export const user = pgTable("user", {
 export const post = pgTable("post", {
   id: uuid("post_id").primaryKey().defaultRandom(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+  slug: text("post_slug").notNull().unique(),
   creatorId: uuid("post_creator_id")
     .references(() => user.id)
     .notNull(),
   title: text("post_title").notNull(),
-  body: text("post_body").notNull(),
+  snippet: text("post_snippet").notNull(),
+  body: jsonb("post_body").$type<string[]>().notNull(),
+  neighborhoods: text("post_neighborhoods").notNull(),
+  communityBoardCode: text("post_community_board_code").notNull(),
+  validZipCodes: jsonb("post_valid_zip_codes").$type<string[]>().notNull(),
   meetingUrl: text("post_meeting_url"),
+  sourceLabel: text("post_source_label"),
+  sourceUrl: text("post_source_url"),
 });
 
 export const tag = pgTable("tag", {
@@ -52,21 +59,6 @@ export const tag = pgTable("tag", {
     .notNull(),
 });
 
-export const comment = pgTable("comment", {
-  id: uuid("comment_id").primaryKey().defaultRandom(),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  body: text("comment_body").notNull(),
-  postId: uuid("comment_post_id")
-    .references(() => post.id)
-    .notNull(),
-  respondingTo: uuid("comment_responding_to").references(
-    (): ReturnType<typeof uuid> => comment.id
-  ),
-  respondentId: uuid("comment_respondent_id").references(
-    () => verifiedRespondent.id
-  ),
-});
-
 export const verifiedRespondent = pgTable("verified_respondent", {
   id: uuid("respondent_id").primaryKey().defaultRandom(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -75,6 +67,19 @@ export const verifiedRespondent = pgTable("verified_respondent", {
   zip: text("zip").notNull(),
   communityBoardCode: text("community_board_code").notNull(),
   emailVerified: boolean("email_verified").default(false).notNull(),
+});
+
+export const comment = pgTable("comment", {
+  id: uuid("comment_id").primaryKey().defaultRandom(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  body: text("comment_body").notNull(),
+  postId: uuid("comment_post_id")
+    .references(() => post.id)
+    .notNull(),
+  respondingTo: uuid("comment_responding_to"),
+  respondentId: uuid("comment_respondent_id").references(
+    () => verifiedRespondent.id
+  ),
 });
 
 export const notifyInterest = pgTable("notify_interest", {

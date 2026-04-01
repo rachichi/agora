@@ -1,5 +1,5 @@
 {
-  "id": "ff869eb4-2688-47ea-9aae-88ef2f72795b",
+  "id": "2edf8637-c8a5-4dc7-9666-78d5cde8f507",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -58,19 +58,6 @@
           ],
           "columnsTo": [
             "post_id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        },
-        "comment_comment_responding_to_comment_comment_id_fk": {
-          "name": "comment_comment_responding_to_comment_comment_id_fk",
-          "tableFrom": "comment",
-          "tableTo": "comment",
-          "columnsFrom": [
-            "comment_responding_to"
-          ],
-          "columnsTo": [
-            "comment_id"
           ],
           "onDelete": "no action",
           "onUpdate": "no action"
@@ -197,6 +184,12 @@
           "notNull": true,
           "default": "now()"
         },
+        "post_slug": {
+          "name": "post_slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
         "post_creator_id": {
           "name": "post_creator_id",
           "type": "uuid",
@@ -209,14 +202,50 @@
           "primaryKey": false,
           "notNull": true
         },
+        "post_snippet": {
+          "name": "post_snippet",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
         "post_body": {
           "name": "post_body",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "post_neighborhoods": {
+          "name": "post_neighborhoods",
           "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "post_community_board_code": {
+          "name": "post_community_board_code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "post_valid_zip_codes": {
+          "name": "post_valid_zip_codes",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": true
         },
         "post_meeting_url": {
           "name": "post_meeting_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "post_source_label": {
+          "name": "post_source_label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "post_source_url": {
+          "name": "post_source_url",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -239,7 +268,15 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
+      "uniqueConstraints": {
+        "post_post_slug_unique": {
+          "name": "post_post_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "post_slug"
+          ]
+        }
+      },
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false

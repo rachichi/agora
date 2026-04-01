@@ -26,10 +26,18 @@ CREATE TABLE "notify_interest" (
 CREATE TABLE "post" (
 	"post_id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,
+	"post_slug" text NOT NULL,
 	"post_creator_id" uuid NOT NULL,
 	"post_title" text NOT NULL,
-	"post_body" text NOT NULL,
-	"post_meeting_url" text
+	"post_snippet" text NOT NULL,
+	"post_body" jsonb NOT NULL,
+	"post_neighborhoods" text NOT NULL,
+	"post_community_board_code" text NOT NULL,
+	"post_valid_zip_codes" jsonb NOT NULL,
+	"post_meeting_url" text,
+	"post_source_label" text,
+	"post_source_url" text,
+	CONSTRAINT "post_post_slug_unique" UNIQUE("post_slug")
 );
 --> statement-breakpoint
 CREATE TABLE "tag" (
@@ -60,7 +68,6 @@ CREATE TABLE "verified_respondent" (
 );
 --> statement-breakpoint
 ALTER TABLE "comment" ADD CONSTRAINT "comment_comment_post_id_post_post_id_fk" FOREIGN KEY ("comment_post_id") REFERENCES "public"."post"("post_id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "comment" ADD CONSTRAINT "comment_comment_responding_to_comment_comment_id_fk" FOREIGN KEY ("comment_responding_to") REFERENCES "public"."comment"("comment_id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "comment" ADD CONSTRAINT "comment_comment_respondent_id_verified_respondent_respondent_id_fk" FOREIGN KEY ("comment_respondent_id") REFERENCES "public"."verified_respondent"("respondent_id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "post" ADD CONSTRAINT "post_post_creator_id_user_user_id_fk" FOREIGN KEY ("post_creator_id") REFERENCES "public"."user"("user_id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "tag" ADD CONSTRAINT "tag_tag_post_id_post_post_id_fk" FOREIGN KEY ("tag_post_id") REFERENCES "public"."post"("post_id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint

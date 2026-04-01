@@ -1,6 +1,6 @@
 import { CommentForm } from "@/components/thread/CommentForm";
 import { CommentList } from "@/components/thread/CommentList";
-import { getCommentsForThread, getThreadById } from "@/lib/data";
+import { createServerCaller } from "@/server/trpc/caller";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,7 +12,8 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  const thread = getThreadById(id);
+  const caller = createServerCaller();
+  const thread = await caller.post.bySlug({ slug: id });
   if (!thread) return { title: "Topic not found — Agora" };
   return {
     title: `${thread.headline} — Agora`,
@@ -22,10 +23,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ThreadPage({ params }: Props) {
   const { id } = await params;
-  const thread = getThreadById(id);
+  const caller = createServerCaller();
+  const thread = await caller.post.bySlug({ slug: id });
   if (!thread) notFound();
-
-  const comments = getCommentsForThread(id);
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
@@ -119,9 +119,9 @@ export default async function ThreadPage({ params }: Props) {
       {/* Comments */}
       <section className="mt-10">
         <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
-          Responses ({comments.length})
+          Responses ({thread.comments.length})
         </h2>
-        <CommentList comments={comments} />
+        <CommentList comments={thread.comments} />
       </section>
     </main>
   );
