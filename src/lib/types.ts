@@ -11,6 +11,8 @@ export type FeedItem = {
   snippet: string;
   tags: string[];
   neighborhoods: string;
+  communityBoardCode: string;
+  validZipCodes: string[];
   postedAt: string;
   commentCount: number;
 };

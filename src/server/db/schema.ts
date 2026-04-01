@@ -5,6 +5,7 @@ import {
   timestamp,
   text,
   jsonb,
+  boolean,
 } from "drizzle-orm/pg-core";
 
 export const userTypeEnum = pgEnum("user_type", [
@@ -61,4 +62,25 @@ export const comment = pgTable("comment", {
   respondingTo: uuid("comment_responding_to").references(
     (): ReturnType<typeof uuid> => comment.id
   ),
+  respondentId: uuid("comment_respondent_id").references(
+    () => verifiedRespondent.id
+  ),
+});
+
+export const verifiedRespondent = pgTable("verified_respondent", {
+  id: uuid("respondent_id").primaryKey().defaultRandom(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  email: text("email").notNull(),
+  addressHash: text("address_hash").notNull(),
+  zip: text("zip").notNull(),
+  communityBoardCode: text("community_board_code").notNull(),
+  emailVerified: boolean("email_verified").default(false).notNull(),
+});
+
+export const notifyInterest = pgTable("notify_interest", {
+  id: uuid("interest_id").primaryKey().defaultRandom(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  email: text("email").notNull(),
+  zip: text("zip").notNull(),
+  communityBoardCode: text("community_board_code").notNull(),
 });

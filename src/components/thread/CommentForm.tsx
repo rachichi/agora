@@ -5,21 +5,37 @@ import { VerifyEmail } from "./VerifyEmail";
 
 type Props = {
   threadId: string;
+  communityBoardCode: string;
+  communityBoardName: string;
+  validZipCodes: string[];
 };
 
-export function CommentForm({ threadId }: Props) {
+export function CommentForm({
+  threadId,
+  communityBoardCode,
+  communityBoardName,
+  validZipCodes,
+}: Props) {
   const [verified, setVerified] = useState(false);
   const [comment, setComment] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   if (!verified) {
-    return <VerifyEmail onVerified={() => setVerified(true)} />;
+    return (
+      <VerifyEmail
+        communityBoardCode={communityBoardCode}
+        communityBoardName={communityBoardName}
+        validZipCodes={validZipCodes}
+        onVerified={() => setVerified(true)}
+      />
+    );
   }
 
   if (submitted) {
     return (
       <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
-        Your anonymous response was recorded. In production this would be persisted to a database.
+        Your anonymous response was recorded. In production this would be
+        persisted to a database.
       </div>
     );
   }

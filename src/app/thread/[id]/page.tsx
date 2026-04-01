@@ -108,7 +108,12 @@ export default async function ThreadPage({ params }: Props) {
 
       {/* Respond */}
       <section className="mt-10">
-        <CommentForm threadId={id} />
+        <CommentForm
+          threadId={id}
+          communityBoardCode={thread.communityBoardCode}
+          communityBoardName={thread.author.organization}
+          validZipCodes={thread.validZipCodes}
+        />
       </section>
 
       {/* Comments */}
