@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { SiteFooter } from "@rachichi/design";
 import { Navbar } from "@/components/layout/Navbar";
 import { TRPCProvider } from "@/lib/trpc/provider";
+import "@rachichi/design/styles.css";
 import "./globals.css";
 
 const inter = Inter({
@@ -27,6 +29,7 @@ export default function RootLayout({
         <TRPCProvider>
           <Navbar />
           {children}
+          <SiteFooter stack="next.js, trpc, drizzle, postgres" />
         </TRPCProvider>
       </body>
     </html>
